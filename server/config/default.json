@@ -1,4 +1,6 @@
 {
-  "port": 5000,
-  "baseUrl": "http://localhost:5000"
+  "port": 6000,
+  "baseUrl": "http://localhost:6000",
+  "mongodbUrl": "mongodb+srv://dbVovka:Gs4HnBRGusjFvrwY@cluster0.glzxd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  "telegramApiKey": "1373283516:AAHJu81wSSaKMTbOcQ8Lx8hyyK8OVGaybmk"
 }

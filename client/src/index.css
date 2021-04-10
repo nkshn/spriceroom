@@ -1,0 +1,19 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+body {
+  font-family: sans-serif;
+}
+.main-container {
+  margin-top: 80px; /* because of navbar height, which equals 80px */
+}
+.sub-container {
+  width: 1200px;
+  margin: 0 auto;
+}
+.button-disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}

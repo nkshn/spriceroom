@@ -5,26 +5,31 @@ import {
   Route
 } from "react-router-dom";
 
+// Components
+import Navbar from "./components/navbar";
+
+// Pages
 import HomePage from "./pages/HomePage";
 import AssortmentPage from "./pages/AssortmentPage";
-import AboutUsPage from "./pages/AboutUsPage";
+import CoffeePage from "./pages/CoffeePage";
 import ContactsPage from "./pages/ContactsPage";
-import BlogPage from "./pages/BlogPage";
 import CartPage from "./pages/CartPage";
 import PaymentsInfoPage from "./pages/PaymentsInfoPage";
 
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route path="/" component={HomePage} exact />
-        <Route path="/assortment" component={AssortmentPage} />
-        <Route path="/about-us" component={AboutUsPage} />
-        <Route path="/contacts" component={ContactsPage} />
-        <Route path="/blog" component={BlogPage} />
-        <Route path="/cart" component={CartPage} />
-        <Route path="/payments" component={PaymentsInfoPage} />
-      </Switch>
+      <Navbar />
+      <div className="main-container">
+        <Switch>
+          <Route path="/" component={HomePage} exact />
+          <Route path="/assortment" component={AssortmentPage} />
+          <Route path="/coffee/:id" component={CoffeePage} />
+          <Route path="/contacts" component={ContactsPage} />
+          <Route path="/cart" component={CartPage} />
+          <Route path="/payments" component={PaymentsInfoPage} />
+        </Switch>
+      </div>
     </Router>
   );
 }

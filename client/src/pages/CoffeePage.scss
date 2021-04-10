@@ -1,0 +1,171 @@
+.coffee-container {
+  width: 1000px;
+  margin: 0 auto;
+}
+.coffee-addToCart-btn {
+  background: #1975c5;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  padding-top: 23px;
+  padding-bottom: 23px;
+  border-radius: 15px;
+  width: 300px;
+  cursor: pointer;
+
+  h3 {
+    color: white;
+    font-size: 24px;
+    text-transform: uppercase;
+    word-spacing: 2px;
+    letter-spacing: 1px;
+  }
+
+  svg {
+    font-size: 25px;
+    color: white;
+  }
+}
+.coffee-buy-btn {
+  border: none;
+  background: #19c526;
+  text-align: center;
+  padding-top: 23px;
+  padding-bottom: 23px;
+  border-radius: 15px;
+  width: 300px;
+  cursor: pointer;
+
+  h3 {
+    color: white;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+}
+.coffee-buy_popup {
+  border: 1px solid #bebebe;
+  background: #efefef;
+  width: 700px;
+  margin: 0 auto;
+  padding-right: 25px;
+  padding-left: 25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-radius: 10px;
+}
+.coffee-buy_header {
+  display: flex;
+  justify-content: space-between;
+
+  h3 {
+    text-transform: uppercase;
+    font-size: 23px;
+  }
+
+  div {
+    font-size: 23px;
+    cursor: pointer;
+  }
+}
+.coffee-buy_center {
+  text-align: center;
+  margin-top: 20px;
+
+  h3 {
+    font-size: 30px;
+  }
+
+  h4 {
+    font-size: 25px;
+  }
+
+  img {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-radius: 5px;
+  }
+}
+.coffee-buy_forms {
+  width: 75%;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.coffee-buy_form-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+  &:first-child {
+    margin-top: 0px;
+  }
+
+  &:last-child {
+    margin-bottom: 0px;
+  }
+  
+  svg {
+    font-size: 30px;
+    color: #6363d2;
+  }
+}
+.coffee-buy-input-div {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+
+  label {
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+
+  input {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    background: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 16px;
+
+    &:focus {
+      outline: none;
+      color: #1975c5;
+      border-bottom: 2px solid #1975c5;
+    }
+  }
+}
+.coffee-buy_form-button {
+  border: none;
+  background: #6363d2;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 30px;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+.coffee-buy-success {
+  text-align: center;
+  margin-top: 20px;
+
+  h3 {
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+}

@@ -1,0 +1,32 @@
+.nav {
+  height: 80px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #494f52;
+  color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+.nav-logo {
+  font-size: 23px;
+  font-weight: 500;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.nav-links {
+  width: 17%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+}
+.nav-links_title {
+  color: white;
+  text-decoration: none;
+}
+.nav-links_title-li {
+  display: flex;
+}
