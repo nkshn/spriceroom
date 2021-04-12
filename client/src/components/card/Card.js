@@ -8,14 +8,15 @@ import FavBtn from './buttons/favorite/FavBtn';
 import "./Card.scss";
 
 function Card(props) {
-
   const {
+    id,
     link,
     name,
     fullName,
     desc,
     img,
     price,
+    isInCart
   } = props;
 
   return (
@@ -27,7 +28,7 @@ function Card(props) {
             <h2>{name}</h2>
             <h3>{fullName}</h3>
           </div>
-          <h4>{desc}</h4>
+          {/* <h4>{desc}</h4> */}
           <div>
             <h2>{price} uah.</h2>
           </div>
@@ -35,7 +36,13 @@ function Card(props) {
       </div>
       <div className="card-item_right">
         <FavBtn />
-        <CartBtn />
+        <CartBtn
+          itemId={id}
+          itemName={name}
+          itemImg={img}
+          itemPrice={price}
+          isInCart={isInCart}
+        />
         <BuyBtn />
       </div>
     </div>

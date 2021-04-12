@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
+import Badge from "../badge/Badge";
+
 import './Navbar.scss';
 
 export default function Navbar() {
@@ -10,10 +12,8 @@ export default function Navbar() {
         <p className="nav-logo">The Spiceroom</p>
       </Link>
       <ul className="nav-links">
-        <Link className="nav-links_title" to="/about-us"><li>About us</li></Link>
         <Link className="nav-links_title" to="/assortment"><li>Assortment</li></Link>
-        <Link className="nav-links_title" to="/blog"><li>Blog</li></Link>
-        <Link className="nav-links_title" to="/contacts"><li>Contacts</li></Link>
+        <Link className="nav-links_title" to="/cart"><li className="nav-cart">Cart <Badge /></li></Link>
       </ul>
     </nav>
   )

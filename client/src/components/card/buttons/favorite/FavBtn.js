@@ -12,7 +12,7 @@ import "./FavBtn.scss";
 
 function FavBtn(props) {
   const {
-    isItemActive = true
+    isItemActive = false
   } = props;
 
   const favItemHandler = () => console.log("favorite");

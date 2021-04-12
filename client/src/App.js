@@ -12,9 +12,7 @@ import Navbar from "./components/navbar";
 import HomePage from "./pages/HomePage";
 import AssortmentPage from "./pages/AssortmentPage";
 import CoffeePage from "./pages/CoffeePage";
-import ContactsPage from "./pages/ContactsPage";
 import CartPage from "./pages/CartPage";
-import PaymentsInfoPage from "./pages/PaymentsInfoPage";
 
 function App() {
   return (
@@ -25,9 +23,7 @@ function App() {
           <Route path="/" component={HomePage} exact />
           <Route path="/assortment" component={AssortmentPage} />
           <Route path="/coffee/:id" component={CoffeePage} />
-          <Route path="/contacts" component={ContactsPage} />
           <Route path="/cart" component={CartPage} />
-          <Route path="/payments" component={PaymentsInfoPage} />
         </Switch>
       </div>
     </Router>

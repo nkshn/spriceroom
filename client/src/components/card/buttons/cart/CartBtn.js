@@ -5,16 +5,44 @@ import {
   faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
 
+// redux
+import { useSelector, useDispatch } from 'react-redux';
+import * as cartActions from "../../../../redux/actions/cart";
+
 import "./CartBtn.scss";
 
 function CartBtn(props) {
-  const addToCartHandler = () => console.log("add to cart");
+  const {
+    itemId,
+    itemName,
+    itemImg,
+    itemPrice,
+    isInCart = false
+  } = props;
+
+  const dispatch = useDispatch();
+
+  const addToCartHandler = () => {
+    dispatch(cartActions.addToCart(itemId, itemName, itemImg, itemPrice));
+  };
 
   return (
-    <button className="cartbtn" onClick={addToCartHandler}>
-      <FontAwesomeIcon icon={faShoppingCart} color="white" />
-      add to cart
-    </button>
+    <>
+      {
+        isInCart === true
+          ? (
+            <button disabled={true} className="cartbtn carbtn-added">
+              added
+            </button>
+          )
+          : (
+            <button className="cartbtn" onClick={addToCartHandler}>
+              <FontAwesomeIcon icon={faShoppingCart} color="white" />
+                add to cart
+            </button>
+          )
+      }
+    </>
   )
 }
 
