@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 // redux
-import { useDispatch, connect } from 'react-redux';
+import { connect } from 'react-redux';
 import * as cartActions from "../redux/actions/cart";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,22 +15,29 @@ import "./CartPage.scss";
 
 const mapStateToProps = (state) => {
   return {
-    cart: state.cart.cart,
+    cart: state.cart.cart
   };
 };
 
-function CartPage({ cart }) {
-  const dispatch = useDispatch();
+const mapDispatchToProps = (dispatch) => {
+  return {
+    decreaseItemQty: id => dispatch(cartActions.decreaseItemQty(id)),
+    increaseItemQty: id => dispatch(cartActions.increaseItemQty(id)),
+    deleteItem: id => dispatch(cartActions.removeFromCart(id)),
+    submitCart: (cartItems) => dispatch(cartActions.submitCart(cartItems)),
+    clearCart: () => dispatch(cartActions.clearCart()),
+  };
+};
 
-  const decreaseItemHandler = (id) => {
-    dispatch(cartActions.decreaseItemQty(id));
-  };
-  const increaseItemHandler = (id) => {
-    dispatch(cartActions.increaseItemQty(id));
-  };
-  const deleteItemHandler = (id) => {
-    dispatch(cartActions.removeFromCart(id));
-  };
+function CartPage(props) {
+  const {
+    cart,
+    decreaseItemQty,
+    increaseItemQty,
+    deleteItem,
+    submitCart,
+    clearCart,
+  } = props;
 
   return (
     <div className="cart-container">
@@ -46,16 +53,18 @@ function CartPage({ cart }) {
                 <img src={item.img} height={80} />
                 <h3>{item.name}</h3>
                 <div className="cart-qty-block">
-                  <button className="cart-qty-btn" onClick={() => decreaseItemHandler(item.id)}>
+                  <button className="cart-qty-btn" onClick={() => decreaseItemQty(item.id)}>
                     <FontAwesomeIcon icon={faMinus} />
                   </button>
                   <h3>{item.qty}</h3>
-                  <button className="cart-qty-btn" onClick={() => increaseItemHandler(item.id)}>
+                  <button className="cart-qty-btn" onClick={() => increaseItemQty(item.id)}>
                     <FontAwesomeIcon icon={faPlus} />
                   </button>
                 </div>
-                <div><h3>{item.qty} x {item.price} = {item.qty * item.price} uah.</h3></div>
-                <button className="cart-remove-btn" onClick={() => deleteItemHandler(item.id)}>
+                <div>
+                  <h3>{item.qty} x {item.price} = {item.totalPrice} uah.</h3>
+                </div>
+                <button className="cart-remove-btn" onClick={() => deleteItem(item.id)}>
                   <FontAwesomeIcon icon={faTrash} />
                 </button>
               </div>
@@ -63,8 +72,20 @@ function CartPage({ cart }) {
           })
         }
       </div>
+      <div className="cart-bottom">
+        {
+          cart.length === 0
+            ? null
+            : (
+              <div className="cart-header_btns">
+                <button className="cart-header-btn submit-btn" onClick={() => submitCart(cart)}>submit</button>
+                <button className="cart-header-btn clear-btn" onClick={clearCart}>clear</button>
+              </div>
+            )
+        }
+      </div>
     </div>
   )
 }
 
-export default connect(mapStateToProps)(CartPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CartPage);

@@ -38,3 +38,51 @@ export const removeFromCart = (itemId) => {
     }
   }
 }
+
+export const clearCart = () => {
+  return {
+    type: actionTypes.CLEAR_CART
+  }
+}
+
+export const submitCart = (cartItems) => {
+  return (dispatch) => {
+    dispatch({ type: actionTypes.SUBMIT_CART });
+
+    let formatedCartItems = cartItems.map(item => ({
+      name: item.name,
+      price: item.price,
+      qty: item.qty,
+      totalPrice: item.totalPrice
+    }));
+
+    fetch(`/api/buy/cart`, {
+      method: "POST",
+      body: JSON.stringify({
+        items: formatedCartItems,
+        totalSum: 0
+      }),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      mode: "cors"
+    })
+      .then(res => res.json())
+      .then(
+        () => {
+          dispatch({
+            type: actionTypes.SUBMIT_CART_SUCCESS,
+          });
+        },
+        err => {
+          dispatch({
+            type: actionTypes.SUBMIT_CART_FAILURE,
+            payload: {
+              errormsg: err
+            }
+          })
+        }
+      );
+  }
+}

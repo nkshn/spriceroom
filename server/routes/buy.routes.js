@@ -28,4 +28,19 @@ router.post("/", async (request, response) => {
   }
 });
 
+router.post("/cart", async (request, response) => {
+  const {
+    cart,
+    totalCartSum
+  } = request.body;
+
+  console.log(`cart: ${cart}, sum: ${totalCartSum}`);
+
+  try {
+    response.status(200).json({ msg: "success!" });
+  } catch (err) {
+    response.status(500).json({ msg: "server responded error", err: err });
+  }
+});
+
 module.exports = router;
