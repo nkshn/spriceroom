@@ -13,41 +13,29 @@ import {
 
 import "./CartPage.scss";
 
-const mapStateToProps = (state) => {
-  return {
-    cart: state.cart.cart
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    decreaseItemQty: id => dispatch(cartActions.decreaseItemQty(id)),
-    increaseItemQty: id => dispatch(cartActions.increaseItemQty(id)),
-    deleteItem: id => dispatch(cartActions.removeFromCart(id)),
-    submitCart: (cartItems) => dispatch(cartActions.submitCart(cartItems)),
-    clearCart: () => dispatch(cartActions.clearCart()),
-  };
-};
-
 function CartPage(props) {
   const {
-    cart,
-    decreaseItemQty,
-    increaseItemQty,
-    deleteItem,
-    submitCart,
-    clearCart,
+    products,
+    totalCartCost,
+    decreaseItemQty, // functions
+    increaseItemQty, // functions
+    deleteItem, // functions
+    submitCart, // functions
+    clearCart, // functions
   } = props;
 
   return (
     <div className="cart-container">
       <div className="cart-header">
         <h3>Shopping Cart</h3>
-        <h3>{cart.length} items</h3>
+        <div>
+          <h3>{totalCartCost} total amount</h3>
+          <h3>{products.length} items</h3>
+        </div>
       </div>
       <div className="cart-items">
         {
-          cart.map((item, index) => {
+          products.map((item, index) => {
             return (
               <div key={index} className="cart-item">
                 <img src={item.img} height={80} />
@@ -74,11 +62,11 @@ function CartPage(props) {
       </div>
       <div className="cart-bottom">
         {
-          cart.length === 0
+          products.length === 0
             ? null
             : (
               <div className="cart-header_btns">
-                <button className="cart-header-btn submit-btn" onClick={() => submitCart(cart)}>submit</button>
+                <button className="cart-header-btn submit-btn" onClick={() => submitCart(products)}>submit</button>
                 <button className="cart-header-btn clear-btn" onClick={clearCart}>clear</button>
               </div>
             )
@@ -87,5 +75,22 @@ function CartPage(props) {
     </div>
   )
 }
+
+const mapStateToProps = (state) => {
+  return {
+    products: state.cart.products,
+    totalCartCost: state.cart.totalCost
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    decreaseItemQty: id => dispatch(cartActions.decreaseItemQty(id)),
+    increaseItemQty: id => dispatch(cartActions.increaseItemQty(id)),
+    deleteItem: id => dispatch(cartActions.removeFromCart(id)),
+    submitCart: (cartItems) => dispatch(cartActions.submitCart(cartItems)),
+    clearCart: () => dispatch(cartActions.clearCart()),
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartPage);

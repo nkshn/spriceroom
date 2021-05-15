@@ -2,9 +2,9 @@ import * as actionTypes from "./../types/cart";
 
 export const addToCart = (itemId, itemName, itemImg, itemPrice) => {
   return (dispatch, getState) => {
-    const cartItems = getState().cart.cart;
+    const cartItems = getState().cart.products;
     
-    let formatedCartItems = [...cartItems];
+    let formatedCartItems = [...cartItems]; // todo: delete this var
     let indexOfItem = cartItems.findIndex(item => item.id === itemId);
 
     if(indexOfItem >= 0) {
@@ -13,13 +13,13 @@ export const addToCart = (itemId, itemName, itemImg, itemPrice) => {
       foundedItem.qty += 1;
       foundedItem.totalPrice = foundedItem.qty * foundedItem.price;
 
-      let totalCartCost = formatedCartItems.reduce((a, b) => ({ totalPrice: a.totalPrice + b.totalPrice }));
+      let totalCartCost = formatedCartItems.length === 0 ? 0 : formatedCartItems.reduce((a, b) => ({ totalPrice: a.totalPrice + b.totalPrice })).totalPrice;
 
       dispatch({
         type: actionTypes.ADD_TO_CART,
         payload: {
-          cart: formatedCartItems,
-          totalCart: totalCartCost.totalPrice,
+          products: formatedCartItems,
+          totalCart: totalCartCost,
         },
       });
     } else {
@@ -31,13 +31,13 @@ export const addToCart = (itemId, itemName, itemImg, itemPrice) => {
         totalPrice: itemPrice * 1,
         qty: 1
       });
-      let totalCartCost = formatedCartItems.reduce((a, b) => ({ totalPrice: a.totalPrice + b.totalPrice }));
+      let totalCartCost = formatedCartItems.length === 0 ? 0 : formatedCartItems.reduce((a, b) => ({ totalPrice: a.totalPrice + b.totalPrice })).totalPrice;
       
       dispatch({
         type: actionTypes.ADD_TO_CART,
         payload: {
-          cart: formatedCartItems,
-          totalCart: totalCartCost.totalPrice,
+          products: formatedCartItems,
+          totalCart: totalCartCost,
         },
       });
     }
@@ -45,10 +45,29 @@ export const addToCart = (itemId, itemName, itemImg, itemPrice) => {
 }
 
 export const decreaseItemQty = (itemId) => {
-  return {
-    type: actionTypes.DECREASE_ITEM_QTY,
-    payload: {
-      id: itemId
+  return (dispatch, getState) => {
+    const cartItems = getState().cart.products;
+    
+    let formatedCartItems = [...cartItems];
+    let indexOfItem = cartItems.findIndex(item => item.id === itemId);
+    let foundedItem = formatedCartItems[indexOfItem];
+    if(indexOfItem >= 0) {
+      if (foundedItem.qty - 1 <= 0) {
+        formatedCartItems = formatedCartItems.filter(item => item.id !== itemId);
+      } else {
+        formatedCartItems[indexOfItem].qty -= 1;
+        formatedCartItems[indexOfItem].totalPrice = foundedItem.totalPrice - foundedItem.price;
+      }
+      let totalCartCost = formatedCartItems.length === 0 ? 0 : formatedCartItems.reduce((a, b) => ({ totalPrice: a.totalPrice + b.totalPrice })).totalPrice;
+      dispatch({
+        type: actionTypes.DECREASE_ITEM_QTY,
+        payload: {
+          products: formatedCartItems,
+          totalCart: totalCartCost,
+        },
+      });
+    } else {
+
     }
   }
 }

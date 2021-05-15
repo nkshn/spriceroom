@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import "./Badge.scss";
 
 function Badge() {
-  const countOfCartItems = useSelector(state => state.cart.cart.length);
+  const countOfCartItems = useSelector(state => state.cart.products.length);
 
   return (
     <>
