@@ -2,6 +2,7 @@ import React, {
   useState,
   useEffect,
 } from "react";
+import MaskedInput from 'react-text-mask'
 
 import { useHttp } from "../hooks/http.hook";
 
@@ -39,7 +40,7 @@ function CoffeePage({ match }) {
   useEffect(async () => {
     try {
       const data = await request(`/api/info/coffee/${id}`, "GET", null, {});
-      if(data) {
+      if (data) {
         setIsCoffeeLoaded(true);
         setCoffee(data);
       }
@@ -75,7 +76,7 @@ function CoffeePage({ match }) {
       const data = await request(
         "/api/buy/",
         "POST",
-        { 
+        {
           name: nameValue,
           phone: phoneValue,
           coffeName: coffee.name,
@@ -106,6 +107,28 @@ function CoffeePage({ match }) {
       setIsSubmitButtonActive(false);
     }
   }, [nameValue, phoneValue]);
+
+  const maskPhone = [
+    '+',
+    '3',
+    '8',
+    ' ',
+    '(',
+    /[0-9]/,
+    /\d/,
+    /\d/,
+    ')',
+    ' ',
+    /\d/,
+    /\d/,
+    /\d/,
+    '-',
+    /\d/,
+    /\d/,
+    '-',
+    /\d/,
+    /\d/,
+  ];
 
   return (
     <>
@@ -160,7 +183,14 @@ function CoffeePage({ match }) {
                                   <FontAwesomeIcon icon={faPhoneAlt} size="lg" />
                                   <div className="coffee-buy-input-div">
                                     <label>Phone Number:</label>
-                                    <input value={phoneValue} onChange={onPhoneChange} type="tel" placeholder="Enter phone number" />
+                                    <MaskedInput
+                                      value={phoneValue}
+                                      onChange={onPhoneChange}
+                                      guide={true}
+                                      showMask={true}
+                                      type="tel"
+                                      mask={maskPhone}
+                                    />
                                   </div>
                                 </div>
                                 <button

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 import BuyBtn from './buttons/buy/BuyBtn';
 import CartBtn from './buttons/cart/CartBtn';
-import FavBtn from './buttons/favorite/FavBtn';
 
 import "./Card.scss";
 
@@ -35,7 +34,6 @@ function Card(props) {
         </Link>
       </div>
       <div className="card-item_right">
-        <FavBtn />
         <CartBtn
           itemId={id}
           itemName={name}
