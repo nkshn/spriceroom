@@ -3,8 +3,8 @@ import * as actionTypes from "./../types/cart";
 const CART_DATA_KEY = "cartData"; // name of localStorage key
 
 const initialState = {
-  products: JSON.parse(localStorage.getItem(CART_DATA_KEY)).products || [],
-  totalCost: JSON.parse(localStorage.getItem(CART_DATA_KEY)).cost || 0,
+  products: localStorage.getItem(CART_DATA_KEY) === null ? [] : JSON.parse(localStorage.getItem(CART_DATA_KEY)).products,
+  totalCost: localStorage.getItem(CART_DATA_KEY) === null ? [] : JSON.parse(localStorage.getItem(CART_DATA_KEY)).cost,
   error: "",
   isSending: false
 }
@@ -50,7 +50,7 @@ const cartReducer = function (state = initialState, action) {
       return { ...state, isSending: true, error: "" }
     case actionTypes.SUBMIT_CART_SUCCESS:
       localStorage.setItem(CART_DATA_KEY, JSON.stringify({ products: [], cost: 0 }));
-      return { ...state, isSending: false, products: [], cost: 0 }
+      return { ...state, isSending: false, products: [], totalCost: 0 }
     case actionTypes.SUBMIT_CART_FAILURE:
       return { ...state, isSending: false, error: action.payload.msg }
     default:
