@@ -80,8 +80,9 @@ function CartPage(props) {
           products.length === 0
             ? null
             : (
-              <div>
-                <div className="cart-header_inputs">
+              <>
+                <div className="cart-bottom_inputs">
+                  <h3>Ваші дані:</h3>
                   <div>
                     <label>Name:</label>
                     <input type="tel" value={nameValue} required onChange={(e) => setNameValue(e.target.value)} />
@@ -91,15 +92,15 @@ function CartPage(props) {
                     <input type="tel" value={phoneValue} required onChange={(e) => setPhoneValue(e.target.value)} />
                   </div>
                 </div>
-                <div className="cart-header_btns">
+                <div className="cart-bottom_btns">
                   {
                     isSubmitBtnActive === true
-                      ? <button className="cart-header-btn submit-btn" onClick={() => submitCart(nameValue, phoneValue)}>submit</button>
-                      : <button className="cart-header-btn submit-btn submit-disabled">submit</button>
+                      ? <button className="cart-bottom-btn submit-btn" onClick={() => submitCart(nameValue, phoneValue)}>submit</button>
+                      : <button className="cart-bottom-btn submit-btn submit-disabled">submit</button>
                   }
-                  <button className="cart-header-btn clear-btn" onClick={clearCart}>clear</button>
+                  <button className="cart-bottom-btn clear-btn" onClick={clearCart}>clear</button>
                 </div>
-              </div>
+              </>
             )
         }
       </div>

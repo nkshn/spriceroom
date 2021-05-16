@@ -12,13 +12,13 @@
   border-bottom: 3px solid #9d9d9d;
   font-size: 23px;
 }
-.cart-header_btns {
+.cart-bottom_btns {
   display: flex;
   flex-direction: row;
   width: 250px;
   justify-content: space-between;
 }
-.cart-header-btn {
+.cart-bottom-btn {
   padding-top: 10px;
   padding-bottom: 10px;
   padding-right: 20px;
@@ -35,7 +35,7 @@
 .submit-btn {
   background: #4caf50;
   border: 3px solid #39833c;
-  
+
   &:hover {
     background: #39833c;
     border-color: #4caf50;
@@ -102,7 +102,7 @@
   cursor: pointer;
   transition: all 0.2s;
   outline: none;
-  
+
   &:hover {
     cursor: pointer;
     background: #ff4a5b;
@@ -117,5 +117,36 @@
     font-size: 17px;
     color: #ff4a5b;
     transition: all 0.2s;
+  }
+}
+.cart-bottom_inputs {
+  width: 600px;
+  margin: 0 auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+
+  h3 {
+    font-size: 28px;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    margin-bottom: 25px;
+
+    label {
+      font-size: 20px;
+      font-weight: 600;
+      color: #777;
+    }
+    input {
+      padding: 7px 5px;
+      border: 0px;
+      border-bottom: 2px solid #777;
+      color: #777;
+      font-size: 18px;
+      outline: none;
+    }
   }
 }
