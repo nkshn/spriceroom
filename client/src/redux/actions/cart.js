@@ -110,22 +110,25 @@ export const clearCart = () => {
   }
 }
 
-export const submitCart = (cartItems) => {
-  return (dispatch) => {
+export const submitCart = (name, phone) => {
+  return (dispatch, getState) => {
     dispatch({ type: actionTypes.SUBMIT_CART });
-
-    let cartItems = cartItems.map(item => ({
+    
+    let cartItems = getState().cart.products.map(item => ({
       name: item.name,
       price: item.price,
       qty: item.qty,
       totalPrice: item.totalPrice
     }));
+    let cartCost = getState().cart.totalCost;
 
     fetch(`/api/buy/cart`, {
       method: "POST",
       body: JSON.stringify({
+        name: name,
+        phone: phone,
         items: cartItems,
-        totalSum: 0
+        totalCost: cartCost
       }),
       headers: {
         'Accept': 'application/json',
@@ -144,10 +147,10 @@ export const submitCart = (cartItems) => {
           dispatch({
             type: actionTypes.SUBMIT_CART_FAILURE,
             payload: {
-              errormsg: err
+              msg: err
             }
           })
         }
-      );
+      )
   }
 }

@@ -4,11 +4,15 @@ import React, {
 } from "react";
 
 import "./Assortment.scss";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 import { useHttp } from "../hooks/http.hook";
 import Card from "../components/card/Card";
 
-function AssortmentPage() {
+function AssortmentPage(props) {
+  const {
+    products
+  } = props;
+
   const { loading, request } = useHttp();
 
   const [coffees, setCoffees] = useState([]);
@@ -21,12 +25,6 @@ function AssortmentPage() {
       console.log("err: " + err);
     }
   }, []);
-
-  const cart = useSelector(state => state.cart.cart);
-
-  useEffect(() => {
-    console.log("cart: " + cart[0])
-  }, [cart]);
 
   return (
     <>
@@ -43,11 +41,10 @@ function AssortmentPage() {
                       link={`/coffee/${item._id}`}
                       name={item.name}
                       fullName={item.fullName}
-                      desc={item.desc}
                       img={item.images[0].sm}
                       price={item.price}
                       isInCart={
-                        cart.findIndex(cartItem => cartItem.id === item._id) >= 0
+                        products.findIndex(cartItem => cartItem.id === item._id) >= 0
                           ? true
                           : false
                       }
@@ -63,4 +60,11 @@ function AssortmentPage() {
   );
 }
 
-export default AssortmentPage;
+const mapStateToProps = (state) => {
+  return {
+    products: state.cart.products,
+    totalCartCost: state.cart.totalCost
+  };
+};
+
+export default connect(mapStateToProps)(AssortmentPage);

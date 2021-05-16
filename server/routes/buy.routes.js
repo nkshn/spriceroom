@@ -3,7 +3,7 @@ const router = Router();
 
 const { bot, chatId } = require("../bot");
 
-// add new one coffee
+// buy one coffee (in one click)
 router.post("/", async (request, response) => {
   const {
     name = "", // user name
@@ -17,7 +17,7 @@ router.post("/", async (request, response) => {
       .sendMessage(
         chatId,
         `
-        <b>Нова Заявка:</b>\n\n<b>Iм'я:</b> ${name}\n<b>Номер:</b> ${phone}\n<b>Хоче:</b> ${coffeName} (${coffePrice} грн.)
+        <b>Нова Заявка:</b>\n\n<b>Iм'я:</b> ${name}\n<b>Номер:</b> ${phone}\n<b>Хоче:</b> ${coffeName} (${coffePrice} грн.)\n\n#заявка #в_один_клік
         `,
         { parse_mode: 'HTML' }
       )
@@ -28,16 +28,30 @@ router.post("/", async (request, response) => {
   }
 });
 
+// buy few cars (cart)
 router.post("/cart", async (request, response) => {
   const {
-    cart,
-    totalCartSum
+    name = "", // user name
+    phone = "", // user phone
+    items,
+    totalCost
   } = request.body;
 
-  console.log(`cart: ${cart}, sum: ${totalCartSum}`);
+  let productsFormatedString = ""
+  items.forEach(item => {
+    productsFormatedString += `\n- <b>${item.name}:</b> ${item.qty}кіл. * ${item.price}грн. = ${item.totalPrice}грн.`
+  })
 
   try {
-    response.status(200).json({ msg: "success!" });
+    bot
+      .sendMessage(
+        chatId,
+        `
+        <b>Нова Заявка:</b>\n\n<b>Iм'я:</b> ${name}\n<b>Номер:</b> ${phone}\n<b>Загальна вартісь:</b> ${totalCost}грн.\n<b>Хоче:</b>${productsFormatedString}\n\n#заявка #корзина
+        `,
+        { parse_mode: 'HTML' }
+      );
+    response.status(200).json({msg: "success!"});
   } catch (err) {
     response.status(500).json({ msg: "server responded error", err: err });
   }

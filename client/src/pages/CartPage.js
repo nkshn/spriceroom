@@ -24,6 +24,21 @@ function CartPage(props) {
     clearCart, // functions
   } = props;
 
+  // form states
+  const [nameValue, setNameValue] = useState("");
+  const [phoneValue, setPhoneValue] = useState("");
+
+  useEffect(() => {
+    if (nameValue !== "" && phoneValue !== "") {
+      setIsSubmitBtnActive(true);
+    } else {
+      setIsSubmitBtnActive(false);
+    }
+  }, [nameValue, phoneValue]);
+
+  // ui state
+  const [isSubmitBtnActive, setIsSubmitBtnActive] = useState(false);
+
   return (
     <div className="cart-container">
       <div className="cart-header">
@@ -65,9 +80,25 @@ function CartPage(props) {
           products.length === 0
             ? null
             : (
-              <div className="cart-header_btns">
-                <button className="cart-header-btn submit-btn" onClick={() => submitCart(products)}>submit</button>
-                <button className="cart-header-btn clear-btn" onClick={clearCart}>clear</button>
+              <div>
+                <div className="cart-header_inputs">
+                  <div>
+                    <label>Name:</label>
+                    <input type="tel" value={nameValue} required onChange={(e) => setNameValue(e.target.value)} />
+                  </div>
+                  <div>
+                    <label>Phone:</label>
+                    <input type="tel" value={phoneValue} required onChange={(e) => setPhoneValue(e.target.value)} />
+                  </div>
+                </div>
+                <div className="cart-header_btns">
+                  {
+                    isSubmitBtnActive === true
+                      ? <button className="cart-header-btn submit-btn" onClick={() => submitCart(nameValue, phoneValue)}>submit</button>
+                      : <button className="cart-header-btn submit-btn submit-disabled">submit</button>
+                  }
+                  <button className="cart-header-btn clear-btn" onClick={clearCart}>clear</button>
+                </div>
               </div>
             )
         }
@@ -88,7 +119,7 @@ const mapDispatchToProps = (dispatch) => {
     decreaseItemQty: id => dispatch(cartActions.decreaseItemQty(id)),
     increaseItemQty: id => dispatch(cartActions.increaseItemQty(id)),
     deleteItem: id => dispatch(cartActions.removeFromCart(id)),
-    submitCart: (cartItems) => dispatch(cartActions.submitCart(cartItems)),
+    submitCart: (name, phone) => dispatch(cartActions.submitCart(name, phone)),
     clearCart: () => dispatch(cartActions.clearCart()),
   };
 };

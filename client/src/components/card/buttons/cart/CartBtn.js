@@ -6,7 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 // redux
-import { useSelector, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import * as cartActions from "../../../../redux/actions/cart";
 
 import "./CartBtn.scss";
@@ -17,14 +17,9 @@ function CartBtn(props) {
     itemName,
     itemImg,
     itemPrice,
-    isInCart = false
+    isInCart = false,
+    addToCart, // redux function
   } = props;
-
-  const dispatch = useDispatch();
-
-  const addToCartHandler = () => {
-    dispatch(cartActions.addToCart(itemId, itemName, itemImg, itemPrice));
-  };
 
   return (
     <>
@@ -36,7 +31,7 @@ function CartBtn(props) {
             </button>
           )
           : (
-            <button className="cartbtn" onClick={addToCartHandler}>
+            <button className="cartbtn" onClick={() => addToCart(itemId, itemName, itemImg, itemPrice)}>
               <FontAwesomeIcon icon={faShoppingCart} color="white" />
                 add to cart
             </button>
@@ -46,4 +41,10 @@ function CartBtn(props) {
   )
 }
 
-export default CartBtn;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToCart: (itemId, itemName, itemImg, itemPrice) => dispatch(cartActions.addToCart(itemId, itemName, itemImg, itemPrice))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CartBtn);

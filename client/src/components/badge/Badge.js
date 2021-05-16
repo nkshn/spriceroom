@@ -1,26 +1,30 @@
 import React from "react";
 
 // redux
-import { useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 
 import "./Badge.scss";
 
-function Badge() {
-  const countOfCartItems = useSelector(state => state.cart.products.length);
+function Badge(props) {
+  const { len } = props;
 
   return (
     <>
       {
-        countOfCartItems === 0
+        len === 0
           ? null
           : (
-            <div className="badge">
-              {countOfCartItems}
-            </div>
+            <div className="badge">{len}</div>
           )
       }
     </>
   )
 }
 
-export default Badge;
+const mapStateToProps = (state) => {
+  return {
+    len: state.cart.products.length
+  };
+};
+
+export default connect(mapStateToProps)(Badge);

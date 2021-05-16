@@ -12,7 +12,6 @@ function Card(props) {
     link,
     name,
     fullName,
-    desc,
     img,
     price,
     isInCart
@@ -27,7 +26,6 @@ function Card(props) {
             <h2>{name}</h2>
             <h3>{fullName}</h3>
           </div>
-          {/* <h4>{desc}</h4> */}
           <div>
             <h2>{price} uah.</h2>
           </div>

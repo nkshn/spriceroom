@@ -39,6 +39,12 @@ const cartReducer = function (state = initialState, action) {
         products: [],
         totalCost: 0
       }
+    case actionTypes.SUBMIT_CART:
+      return { ...state, isSending: true, error: "" }
+    case actionTypes.SUBMIT_CART_SUCCESS:
+      return { ...state, isSending: false, products: [], totalCost: 0 }
+    case actionTypes.SUBMIT_CART_FAILURE:
+      return { ...state, isSending: false, error: action.payload.msg }
     default:
       return state;
   };
