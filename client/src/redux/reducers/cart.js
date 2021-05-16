@@ -9,7 +9,7 @@ const initialState = {
 
 const cartReducer = function (state = initialState, action) {
   switch (action.type) {
-    case actionTypes.ADD_TO_CART: 
+    case actionTypes.ADD_TO_CART:
       return {
         ...state,
         products: action.payload.products,
@@ -20,6 +20,24 @@ const cartReducer = function (state = initialState, action) {
         ...state,
         products: action.payload.products,
         totalCost: action.payload.totalCart,
+      }
+    case actionTypes.INCREASE_ITEM_QTY:
+      return {
+        ...state,
+        products: action.payload.products,
+        totalCost: action.payload.totalCart,
+      }
+    case actionTypes.REMOVE_FROM_CART:
+      return {
+        ...state,
+        products: action.payload.products,
+        totalCost: action.payload.totalCart,
+      }
+    case actionTypes.CLEAR_CART:
+      return {
+        ...state,
+        products: [],
+        totalCost: 0
       }
     default:
       return state;
