@@ -28,7 +28,7 @@ function CartPage(props) {
   const [isSubmitBtnActive, setIsSubmitBtnActive] = useState(false);
 
   return (
-    <div></div>
+    <div>123</div>
   )
 }
 
