@@ -17,7 +17,7 @@ app.use(express.json({ extended: true })); // like "body-parser"
 app.use("/api/info", require("./routes/coffee.routes"));
 app.use("/api/buy", require("./routes/buy.routes"));
 
-const PORT = config.get('port') || 5000;
+const PORT = config.get("port") || 5000;
 
 async function start() {
   try {

@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 
+const asana = require("../asana");
 const { bot, chatId } = require("../bot");
 
 // buy one coffee (in one click)
@@ -37,12 +38,13 @@ router.post("/cart", async (request, response) => {
     totalCost
   } = request.body;
 
-  let productsFormatedString = ""
+  let productsFormatedString = "";
   items.forEach(item => {
     productsFormatedString += `\n- <b>${item.name}:</b> ${item.qty}кіл. * ${item.price}грн. = ${item.totalPrice}грн.`
   })
 
   try {
+    // create tg bot notification
     bot
       .sendMessage(
         chatId,
@@ -51,7 +53,11 @@ router.post("/cart", async (request, response) => {
         `,
         { parse_mode: 'HTML' }
       );
-    response.status(200).json({msg: "success!"});
+    
+    // create asana task
+    asana.createTask("Нова Заявка!", 0);
+
+    response.status(200).json({ msg: "success!" });
   } catch (err) {
     response.status(500).json({ msg: "server responded error", err: err });
   }
