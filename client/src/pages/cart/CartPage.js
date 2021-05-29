@@ -28,7 +28,44 @@ function CartPage(props) {
   const [isSubmitBtnActive, setIsSubmitBtnActive] = useState(false);
 
   return (
-    <div>123</div>
+    
+    <div className="container">
+        <div className="cart-title">Корзина</div>
+        <div className="titles">
+          <p className="t1">PRODUCT</p>
+          <p className="t2">QUANTITY</p>
+          <p className="t3">TOTAL</p>
+        </div><hr />
+        <div className="cart-items">
+        {
+          products.map((item, index) => {
+            return (
+              <div key={index} className="cart-item">
+                <img src={item.img} height={80} />
+                <div className="cart-qty-block">
+                  <button className="cart-qty-btn" onClick={() => decreaseItemQty(item.id)}>
+                    <FontAwesomeIcon icon={faMinus} />
+                  </button>
+                  <h3>{item.qty}</h3>
+                  <button className="cart-qty-btn" onClick={() => increaseItemQty(item.id)}>
+                    <FontAwesomeIcon icon={faPlus} />
+                  </button>
+                </div>
+                <p className="cart-remove-btn" onClick={() => deleteItem(item.id)}>
+                    Remove
+                </p>
+                <div className="total-price">
+                  <div>{item.totalPrice} ₴</div>
+                </div>
+                <div className="coffee-name">{item.name}</div >
+              </div>
+            )
+          })
+        }
+        <hr className="b-line" />
+      </div>
+    </div>
+    
   )
 }
 
