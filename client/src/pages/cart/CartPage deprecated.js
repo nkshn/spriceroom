@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 // redux
 import { connect } from 'react-redux';
-import * as cartActions from "../redux/actions/cart";
+import * as cartActions from "../../redux/actions/cart";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
