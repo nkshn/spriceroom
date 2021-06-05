@@ -12,7 +12,7 @@ import Navbar from "./components/navbar";
 import HomePage from "./pages/HomePage";
 import AssortmentPage from "./pages/AssortmentPage";
 import CoffeePage from "./pages/CoffeePage";
-import CartPage from "./pages/cart/CartPage";
+import CartPage from "./pages/cart/CartPage deprecated";
 
 function App() {
   return (

@@ -14,6 +14,7 @@ router.post("/", async (request, response) => {
   } = request.body;
 
   try {
+    // create tg bot notification
     bot
       .sendMessage(
         chatId,
@@ -21,8 +22,16 @@ router.post("/", async (request, response) => {
         <b>Нова Заявка:</b>\n\n<b>Iм'я:</b> ${name}\n<b>Номер:</b> ${phone}\n<b>Хоче:</b> ${coffeName} (${coffePrice} грн.)\n\n#заявка #в_один_клік
         `,
         { parse_mode: 'HTML' }
-      )
+      );
     
+    // create asana task
+    asana.createTask("Нова Заявка!", 1, {
+      name: name,
+      phone: phone,
+      coffeName: coffeName,
+      coffePrice: coffePrice
+    });
+
     response.status(200).json({ msg: "success!" });
   } catch (err) {
     response.status(500).json({ msg: "server responded error", err: err });
@@ -55,7 +64,9 @@ router.post("/cart", async (request, response) => {
       );
     
     // create asana task
-    asana.createTask("Нова Заявка!", 0);
+    asana.createTask("Нова Заявка!", 0, {
+      
+    });
 
     response.status(200).json({ msg: "success!" });
   } catch (err) {
