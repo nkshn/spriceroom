@@ -28,41 +28,36 @@ function CartPage(props) {
   const [isSubmitBtnActive, setIsSubmitBtnActive] = useState(false);
 
   return (
-    
-    <div className="container">
+    <div className="сart-container">
         <div className="cart-title">Корзина</div>
-        <div className="titles">
-          <p className="t1">PRODUCT</p>
-          <p className="t2">QUANTITY</p>
-          <p className="t3">TOTAL</p>
-        </div><hr />
+        <div className="cart-header">
+          <h3>товар</h3>
+          <h3>кількість</h3>
+          <h3>загальна сума</h3>
+        </div>
         <div className="cart-items">
         {
           products.map((item, index) => {
             return (
               <div key={index} className="cart-item">
-                <img src={item.img} height={80} />
-                <div className="cart-qty-block">
-                  <button className="cart-qty-btn" onClick={() => decreaseItemQty(item.id)}>
-                    <FontAwesomeIcon icon={faMinus} />
-                  </button>
-                  <h3>{item.qty}</h3>
-                  <button className="cart-qty-btn" onClick={() => increaseItemQty(item.id)}>
-                    <FontAwesomeIcon icon={faPlus} />
-                  </button>
+                <div className="cart-item_left">
+                  <img src={item.img} height={80} />
+                  <div className="cart-item_left-textBlock">
+                    <p>{item.name}</p>
+                    <p>250 гр.</p>
+                    <p>{item.price} грн.</p>
+                  </div>
                 </div>
-                <p className="cart-remove-btn" onClick={() => deleteItem(item.id)}>
-                    Remove
-                </p>
-                <div className="total-price">
-                  <div>{item.totalPrice} ₴</div>
+                <div className="cart-item_center">
+                  
                 </div>
-                <div className="coffee-name">{item.name}</div >
+                <div className="cart-item_rigth">
+                  
+                </div>
               </div>
             )
           })
         }
-        <hr className="b-line" />
       </div>
     </div>
     

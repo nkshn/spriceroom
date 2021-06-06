@@ -13,7 +13,7 @@ import Footer from "./components/footer";
 import HomePage from "./pages/HomePage";
 import AssortmentPage from "./pages/AssortmentPage";
 import CoffeePage from "./pages/CoffeePage";
-import CartPage from "./pages/cart/CartPage deprecated";
+import CartPage from "./pages/cart/CartPage";
 
 function App() {
   return (
