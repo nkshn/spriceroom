@@ -7,6 +7,7 @@ import {
 
 // Components
 import Navbar from "./components/navbar";
+import Footer from "./components/footer";
 
 // Pages
 import HomePage from "./pages/HomePage";
@@ -21,11 +22,12 @@ function App() {
       <div className="main-container">
         <Switch>
           <Route path="/" component={HomePage} exact />
-          <Route path="/assortment" component={AssortmentPage} />
+          <Route path="/coffees" component={AssortmentPage} />
           <Route path="/coffee/:id" component={CoffeePage} />
           <Route path="/cart" component={CartPage} />
         </Switch>
       </div>
+      <Footer />
     </Router>
   );
 }

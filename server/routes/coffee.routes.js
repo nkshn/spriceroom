@@ -47,12 +47,6 @@ router.post("/coffee", async (request, response) => {
   const gettedCoffee = request.body;
 
   try {
-    const existingName = await Coffee.findOne({ name: gettedCoffee.name });
-
-    if (existingName) {
-      return response.status(400).json({ msg: "coffee already exists" });
-    }
-    
     const newCoffee = new Coffee(gettedCoffee);
     await newCoffee.save();
     response.status(200).json({ message: "coffee was added" });
