@@ -41,7 +41,7 @@ function AssortmentPage(props) {
                       link={`/coffee/${item._id}`}
                       name={item.name}
                       fullName={item.fullName}
-                      img={item.images[0].sm}
+                      img={item.image}
                       price={item.price}
                       isInCart={
                         products.findIndex(cartItem => cartItem.id === item._id) >= 0

@@ -46,35 +46,135 @@
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   justify-content: space-around;
+  align-items: center;
   width: 100%;
   margin-top: 15px;
   margin-bottom: 15px;
 }
+
 .cart-item_left {
   display: flex;
   justify-content: space-between;
 
   img {
-    margin-right: 20px;
+    margin-right: 15px;
     height: 100px;
+    border-radius: 7px;
   }
 }
 .cart-item_left-textBlock {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 13px;
+  margin-bottom: 13px;
 
   p {
     font-size: 18px;
     font-weight: 300;
     color: #777;
+    font-style: italic;
 
     &:first-child {
+      font-style: initial;
       font-weight: 600;
       color: #777;
       text-transform: capitalize;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+.cart-item_center-container {
+  align-items: center;
+  justify-content: flex-end;
+  display: flex;
+
+  div {
+    text-align: center;
+  }
+}
+.cart-item_center-buttons {
+  display: flex;
+  border: 2px solid #e1e1e1;
+  align-items: center;
+
+  button {
+    border: none;
+    background: none;
+    position: relative;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-right: 25px;
+    padding-left: 25px;
+    cursor: pointer;
+    outline: none;
+
+    svg {
+      color: #b6b6b6;
+      font-size: 16px;
+    }
+  }
+
+  h3 {
+    color: #777;
+    font-weight: 500;
+    width: 20px;
+  }
+}
+.cart-item_center-remove {
+  cursor: pointer;
+
+  h4 {
+    width: 100px;
+    margin: 0 auto;
+    margin-top: 7px;
+    text-transform: uppercase;
+    color: #777;
+    letter-spacing: 2px;
+    font-size: 15px;
+    font-weight: 500;
+    border-bottom: 2px solid #cdcdcd;
+    padding-bottom: 1px;
+  }
+}
+
+.cart-item_rigth {
+  h4 {
+    text-align: end;
+    color: #777;
+    font-weight: 500;
+    font-size: 18px;
+  }
+}
+.cart-bottom-section {
+  margin-top: 30px;
+  text-align: end;
+
+  h4 {
+    text-transform: lowercase;
+    margin-bottom: 26px;
+    color: #777;
+    font-weight: 300;
+    font-size: 20px;
+  }
+
+  button {
+    font-size: 18px;
+    color: #282828;
+    background: white;
+    padding: 15px 25px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #282828;
+    font-weight: 600;
+    transition: all 0.2s;
+
+    &:hover {
+      color: white;
+      background: #282828;
     }
   }
 }

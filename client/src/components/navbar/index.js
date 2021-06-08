@@ -1,15 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Grid, GridItem, Box } from "@chakra-ui/react";
-import { Container, Center } from "@chakra-ui/react";
-import { Image } from "@chakra-ui/react"
-
-import Badge from "../badge/Badge";
+// redux
+import { connect } from 'react-redux';
 
 import './Navbar.scss';
 
-export default function Navbar() {
+function Navbar(props) {
+  const { len } = props;
+
   return (
     <nav className="nav-container">
       <div className="nav-leftBlock">
@@ -29,8 +28,17 @@ export default function Navbar() {
         <img src="http://via.placeholder.com/300x75" />
       </div>
       <div className="nav-rigthBlock">
-        <Link to="/cart">корзина ({0})</Link>
+        <Link to="/cart">корзина ({len})</Link>
       </div>
     </nav>
   )
 }
+
+
+const mapStateToProps = (state) => {
+  return {
+    len: state.cart.products.length
+  };
+};
+
+export default connect(mapStateToProps)(Navbar);
