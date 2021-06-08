@@ -7,7 +7,7 @@
 
 .cart-title {
   font-size: 35px;
-  letter-spacing: 2px;
+  letter-spacing: 4px;
   color: #777;
   font-weight: 500;
   text-transform: lowercase;
@@ -84,7 +84,9 @@
     }
   }
 }
-
+.cart-item_center {
+  margin-right: 13px;
+}
 .cart-item_center-container {
   align-items: center;
   justify-content: flex-end;

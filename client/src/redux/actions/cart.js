@@ -104,12 +104,6 @@ export const removeFromCart = (itemId) => {
   }
 }
 
-export const clearCart = () => {
-  return {
-    type: actionTypes.CLEAR_CART
-  }
-}
-
 export const submitCart = (name, phone) => {
   return (dispatch, getState) => {
     dispatch({ type: actionTypes.SUBMIT_CART });

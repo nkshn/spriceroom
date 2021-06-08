@@ -39,13 +39,6 @@ const cartReducer = function (state = initialState, action) {
         products: action.payload.products,
         totalCost: action.payload.totalCart,
       }
-    case actionTypes.CLEAR_CART:
-      localStorage.setItem(CART_DATA_KEY, JSON.stringify({ products: [], cost: 0 }));
-      return {
-        ...state,
-        products: [],
-        totalCost: 0
-      }
     case actionTypes.SUBMIT_CART:
       return { ...state, isSending: true, error: "" }
     case actionTypes.SUBMIT_CART_SUCCESS:

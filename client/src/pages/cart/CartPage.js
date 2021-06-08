@@ -17,11 +17,10 @@ function CartPage(props) {
   const {
     products,
     totalCartCost,
-    decreaseItemQty, // functions
-    increaseItemQty, // functions
-    deleteItem, // functions
-    submitCart, // functions
-    clearCart, // functions
+    decreaseItemQty, // function
+    increaseItemQty, // function
+    deleteItem, // function
+    submitCart // function
   } = props;
 
   // ui state
@@ -106,7 +105,6 @@ const mapDispatchToProps = (dispatch) => {
     increaseItemQty: id => dispatch(cartActions.increaseItemQty(id)),
     deleteItem: id => dispatch(cartActions.removeFromCart(id)),
     submitCart: (name, phone) => dispatch(cartActions.submitCart(name, phone)),
-    clearCart: () => dispatch(cartActions.clearCart()),
   };
 };
 
