@@ -43,6 +43,10 @@
 .nav-centerBlock {
   height: 75px;
   text-align: center;
+
+  img {
+    cursor: pointer;
+  }
 }
 .nav-rigthBlock {
   text-align: end;

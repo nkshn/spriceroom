@@ -4,12 +4,9 @@ import React, { useState } from "react";
 import { connect } from 'react-redux';
 import * as cartActions from "../../redux/actions/cart";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTrash,
-  faMinus,
-  faPlus,
-} from "@fortawesome/free-solid-svg-icons";
+
+// container
+import ConfirmCart from "./ConfirmCart";
 
 import "./CartPage.scss";
 
@@ -28,12 +25,16 @@ function CartPage(props) {
 
   return (
     <div className="сart-container">
-      <div className="cart-title">Корзина</div>
+      <div className="cart-title">
+        {
+          isSubmitBtnActive === true ? "підтвердження" : "корзина"
+        }
+      </div>
       {
         isSubmitBtnActive === true
-          ? <p>sumbit cart view will be in future</p>
+          ? <ConfirmCart />
           : (
-            <p>
+            <>
               <div className="cart-header">
                 <h3>товар</h3>
                 <h3>кількість</h3>
@@ -82,7 +83,7 @@ function CartPage(props) {
                 <h4>Вартість: {totalCartCost.toLocaleString("de-DE")} грн.</h4>
                 <button onClick={() => setIsSubmitBtnActive(true)}>Підтвердити</button>
               </div>
-            </p>
+            </>
           )
       }
 

@@ -178,5 +178,16 @@
       color: white;
       background: #282828;
     }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+
+      &:hover {
+        color: #282828;
+        border: 2px solid #282828;
+        background: white;
+      }
+    }
   }
 }
