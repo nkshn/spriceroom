@@ -11,7 +11,7 @@ import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import EditCart from "./EditCart";
 import ConfirmCart from "./ConfirmCart";
 
-import "./CartPage.scss";
+import "./index.scss";
 
 function CartPage(props) {
   const {
@@ -19,16 +19,18 @@ function CartPage(props) {
     totalCartCost,
     decreaseItemQty, // function
     increaseItemQty, // function
-    deleteItem, // function
-    submitCart // http function
+    deleteItem // function
   } = props;
 
   // ui state
   const [isSubmitBtnActive, setIsSubmitBtnActive] = useState(false);
 
   // ui functions
-  const sumbmitCartHandler = () => {
+  const confirmCartHandler = () => {
     setIsSubmitBtnActive(true);
+  }
+  const cancelCartHandler = () => {
+    setIsSubmitBtnActive(false);
   }
 
   return (
@@ -40,14 +42,18 @@ function CartPage(props) {
       </div>
       {
         isSubmitBtnActive === true
-          ? <ConfirmCart />
+          ? <ConfirmCart
+              products={products}
+              totalCost={totalCartCost}
+              cancelHandler={cancelCartHandler}
+            />
           : (
             <EditCart
               products={products}
               deleteItem={deleteItem}
               decrease={decreaseItemQty}
               increase={increaseItemQty}
-              submitCart={sumbmitCartHandler}
+              confirmCart={confirmCartHandler}
               totalCost={totalCartCost}
             />
           )
@@ -70,7 +76,7 @@ const mapDispatchToProps = (dispatch) => {
     // decreaseItemQty: id => dispatch(cartActions.decreaseItemQty(id)),
     // increaseItemQty: id => dispatch(cartActions.increaseItemQty(id)),
     // deleteItem: id => dispatch(cartActions.removeFromCart(id)),
-    submitCart: (name, phone) => dispatch(cartActions.submitCart(name, phone)),
+    // submitCart: (name, phone) => dispatch(cartActions.submitCart(name, phone)),
   };
 };
 

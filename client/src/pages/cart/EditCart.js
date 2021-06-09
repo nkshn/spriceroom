@@ -14,7 +14,7 @@ function EditCart(props) {
     decreaseItemQty, // function
     increaseItemQty, // function
     deleteItem, // function
-    submitCart,
+    confirmCart,
     totalCost
   } = props;
 
@@ -66,7 +66,7 @@ function EditCart(props) {
       </div>
       <div className="cart-bottom-section">
         <h4>Вартість: {totalCost.toLocaleString("de-DE")} грн.</h4>
-        <button disabled={products.length === 0 ? true : false} onClick={submitCart}>Підтвердити</button>
+        <button disabled={products.length === 0 ? true : false} onClick={confirmCart}>Підтвердити</button>
       </div>
     </>
   )

@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { connect } from 'react-redux';
 import * as cartActions from "../../redux/actions/cart";
 
-
 // container
 import ConfirmCart from "./ConfirmCart";
 
